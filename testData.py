@@ -75,10 +75,11 @@ Original Question
                 self.optCDict[str(self.key)] = opt[4]
                 self.optDDict[str(self.key)] = opt[5]
                 self.key = self.key + 1
-        #Get the Images and Save them in local Temp Directory
+        #Get the Images and Save them in local Temp Directory if there is already Directory Delete it
         #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
-    
-	os.mkdir('temp')
+        if os.path.isdir('temp'):
+               shutil.rmtree('temp')
+        os.mkdir('temp')
         #download all the image files in questions data to temporary directory
         for key in self.imgUrlDict:
             #print key+":"+newLogic.data.imgUrlDict[key]
