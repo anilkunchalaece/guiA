@@ -99,6 +99,7 @@ This is used for CSV Reader
         f.close()
         """
 if __name__ == "__main__":
+    os.mkdir('temp')
     data = TestData()
     print "no of Questions"
     print len(data.keys)
