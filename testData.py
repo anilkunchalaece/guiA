@@ -21,7 +21,7 @@ class TestData(object):
         self.optCDict = {}
         self.optDDict = {}
         self.keyDict = {}
-        self.key = 1;
+        self.key = 1
         #imgDict and imDict uses the Normal Keywords Not Uid of Questons as Key Values
         self.imgUrlDict = {}
         self.imgQueDict = {}
@@ -78,6 +78,7 @@ Original Question
         #Get the Images and Save them in local Temp Directory
         #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
     
+	os.mkdir('temp')
         #download all the image files in questions data to temporary directory
         for key in self.imgUrlDict:
             #print key+":"+newLogic.data.imgUrlDict[key]
@@ -97,9 +98,11 @@ This is used for CSV Reader
             self.optCDict[str(key)] = row[4]
             self.optDDict[str(key)] = row[5]
         f.close()
+
         """
+
 if __name__ == "__main__":
-    os.mkdir('temp')
+   
     data = TestData()
     print "no of Questions"
     print len(data.keys)

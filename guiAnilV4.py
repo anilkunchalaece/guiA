@@ -77,8 +77,8 @@ class guiLogic(Ui_prepare2Pg):
 
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
-        self.timerValue = 0;
-        self.startTimer();
+        self.timerValue = 0
+        self.startTimer()
 
     def addScrollArea(self):
         for key in range (len(self.data.keys)):
