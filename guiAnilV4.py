@@ -247,7 +247,7 @@ class guiLogic(Ui_prepare2Pg):
                         <title>A Sample Page</title>
                         </head>
                         <body>
-                        <img src="'''+os.getcwd()+'''/temp/'''+str(newLogic.data.keyDict[str(QIndex)])+'''.png" align="middle">
+                        <img src="'''+os.getcwd()+'''/temp/'''+str(newLogic.data.keyDict[str(QIndex)])+'''.jpg" align="middle">
                         '''+str(newLogic.data.imgQueDict[str(QIndex)][0])+'''
                         </body>
                         </html>'''

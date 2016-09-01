@@ -78,8 +78,7 @@ class Ui_prepare2Pg(object):
         self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
         self.horizontalLayout_4 = QtGui.QHBoxLayout(self.layoutWidget2)
         self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
-        self.QuestionLabel = QtWebKit.QWebView(self.layoutWidget2)
-        self.QuestionLabel.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
+        self.QuestionLabel = QtGui.QTextBrowser(self.layoutWidget2)
         self.QuestionLabel.setObjectName(_fromUtf8("QuestionLabel"))
         self.horizontalLayout_4.addWidget(self.QuestionLabel)
         self.layoutWidget3 = QtGui.QWidget(self.centralwidget)
@@ -176,4 +175,13 @@ class Ui_prepare2Pg(object):
         self.medPg.setText(_translate("prepare2Pg", "<html><head/><body><p align=\"center\"><span style=\" color:#ff5500;\">Prepare2Pg</span></p></body></html>", None))
         self.testNameLabel.setText(_translate("prepare2Pg", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#0000ff;\">Mock Test - 1</span></p></body></html>", None))
 
-from PyQt4 import QtWebKit
+
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    prepare2Pg = QtGui.QMainWindow()
+    ui = Ui_prepare2Pg()
+    ui.setupUi(prepare2Pg)
+    prepare2Pg.show()
+    sys.exit(app.exec_())
+
