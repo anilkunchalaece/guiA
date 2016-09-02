@@ -67,7 +67,7 @@ class guiLogic(Ui_prepare2Pg):
         self.questionIndex = 1 #variable to hold the questionIndex it is hero of our movie
         self.data = TestData() # Create a TestData Object which supply necessary Ingredients
         self.maxQuestions = len(self.data.queDict) # 
-        self.rows = 5 # it is used to hold the  max no of rows we want in scroll widget
+        self.rows = 4 # it is used to hold the  max no of rows we want in scroll widget
         self.rowAddition = self.rows #this is just a copy of rows value which is used in Automatic generation of btn's in Scroll Area
         self.resultDict = { } # it holds the user selected Options
         self.selectedOption = 'n' # Default option
@@ -91,7 +91,8 @@ class guiLogic(Ui_prepare2Pg):
         for key in range (len(self.data.keys)):
             self.btnKey = str(key+1) #added 1 to key since for loop starts from '0' and Question Index starts from 1
             self.btn[self.btnKey] = QtGui.QPushButton(ui.scrollAreaWidgetContents) # generate pushbutton object and add that object to dictionary for future Reference
-            self.btn[self.btnKey].setMaximumSize(QtCore.QSize(30, 30))
+            self.btn[self.btnKey].setMaximumSize(QtCore.QSize(40, 40))
+            self.btn[self.btnKey].setStyleSheet("QPushButton{ background-image: url(btnImages/notVisitedImg.png); }")#Mark All Questions as UnVisited
             self.btnText = str(key+1) #set the text as key value which is used as reference to Respectiv Question
             self.btn[self.btnKey].setText(self.btnText) #Add the test to the btn
             #self.btn[self.btnKey].setCheckable(True)
