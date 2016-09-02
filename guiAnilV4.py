@@ -275,7 +275,8 @@ class guiLogic(Ui_prepare2Pg):
         #for Question first we are checking the type of Question whether it is a img oriented q?
         x = str(newLogic.data.queDict[str(QIndex)])
         y = str(QIndex)
-        
+
+        #If option is selected then only change the icon to the unanswered
         checked = self.resultDict.get(QIndex,False)
         if checked == False:
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
