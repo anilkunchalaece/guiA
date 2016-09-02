@@ -78,7 +78,7 @@ class guiLogic(Ui_prepare2Pg):
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
         self.timerValue = 0
-        self.startTimer()
+#        self.startTimer()
 
     def addScrollArea(self):
         for key in range (len(self.data.keys)):
@@ -156,25 +156,26 @@ class guiLogic(Ui_prepare2Pg):
     
     def setupLogic(self):
         #Assign the Duties for Buttons
-        ui.nextBtn.clicked.connect(self.nextFcn)
-        ui.reviewBtn.clicked.connect(self.reviewFcn)
+        ui.reviewAndNextBtn.clicked.connect(self.reviewAndNextFcn)
+        ui.clrResponseBtn.clicked.connect(self.clrResponseFcn)
+        ui.saveAndNextBtn.clicked.connect(self.saveAndNextFcn)
         ui.submitBtn.clicked.connect(self.submitFcn)
-        ui.endTestBtn.clicked.connect(self.endTestFcn)
-        ui.previousBtn.clicked.connect(self.previousFcn)
+        
       
-    def nextFcn(self):
+    def reviewAndNextFcn(self):
         #when next Btn is pressed increment the questionIndex and Display the Question using Index
-        print "Next Btn Selected"
+        print "Review and Next Btn is Clicked"
         self.questionIndex=newLogic.questionIndex+1
         if self.questionIndex > self.maxQuestions :
             self.questionIndex = 1
         self.retranslateUi(newLogic.questionIndex)
         self.showPreviosOption(self.questionIndex)
+        #need to add the Review function here
 
-    def reviewFcn(self):
+    def clrResponseFcn(self):
         #when Review Btn is Pressed change the color of respective Btn
-        print "Review Btn Pressed"
-        self.changeColor(self.questionIndex,'r')
+        print "clr Response Function Selected"
+        #add the Clr Response 
 
     def changeColor(self,Qindex,color):
         #this function takes Qindex and Color as arguments
@@ -189,7 +190,7 @@ class guiLogic(Ui_prepare2Pg):
             bgColor = "background-color: yellow"
         self.btn[str(Qindex)].setStyleSheet(bgColor) #Change the color of Respective Btn
         
-    def submitFcn(self):
+    def saveAndNextFcn(self):
         # When submit button is pressed see which of the toggle button is checked and select the option accordingly
         # and the store the respective value to the resulDict with QIndex as Key
         # then Change the color of the Respective Button is Scroll btn usinf Qindex 
@@ -213,29 +214,22 @@ class guiLogic(Ui_prepare2Pg):
             self.selectedOption = 'N'
         self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
         self.changeColor(self.questionIndex,'g') #Change the Color
+
+        #add next function here
         
-    def endTestFcn(self):
+    def submitFcn(self):
         #when endTest btn is clicked Print the Resulting Dict
         
         print "endTest Btn Pressed"
         print "Output Dict is "
         print self.resultDict
         shutil.rmtree("temp") # delete the temporary directory
-    def previousFcn(self):
-        #when previous btn is clicked decrement the Qindex value and Display the respective Question using Qindex
-        print "Previous Btn Pressed"
-        newLogic.questionIndex=newLogic.questionIndex-1
-        if self.questionIndex == 0:
-            self.questionIndex = self.maxQuestions
-            
-        newLogic.retranslateUi(newLogic.questionIndex)
-        self.showPreviosOption(self.questionIndex)
 
     def retranslateUi(self,QIndex):
         #this function takes QIndex as argument
         #where Qindex is Key value in Data
         #using key values we set the Text of Question label and optA,B,C and D Radio Buttons 
-        ui.testNameLabel.setText(_translate("prepare2Pg", "TEST NAME", None))
+#        ui.testNameLabel.setText(_translate("prepare2Pg", "TEST NAME", None))
 
         #for Question first we are checking the type of Question whether it is a img oriented q?
         x = str(newLogic.data.queDict[str(QIndex)])
