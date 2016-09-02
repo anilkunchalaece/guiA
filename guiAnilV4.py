@@ -77,7 +77,15 @@ class guiLogic(Ui_prepare2Pg):
         self.addImagesForLegendBtns()
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
+        
         self.timerValue = 0
+        
+        self.answeredBtnIndex = 0
+        self.notVisitedIndex = 0
+        self.answeredAndMarkedForReviewIndex=0
+        self.notAnsweredBtnIndex = 0
+        self.markedForReviewIndex = 0
+        
 #        self.startTimer()
 
     def addImagesForLegendBtns(self):
@@ -196,8 +204,10 @@ class guiLogic(Ui_prepare2Pg):
 
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
+            self.markedForReviewIndex = self.markedForReviewIndex + 1
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredAndMarkedForReviewImg.png); }")
+            self.answeredAndMarkedForReviewIndex = self.answeredAndMarkedForReviewIndex+1
             
         self.moveToNextQuestion()
 
@@ -217,6 +227,8 @@ class guiLogic(Ui_prepare2Pg):
         ui.buttonGroup.setExclusive(True)
         #Update the resultDict
         self.resultDict[self.questionIndex] = 'N'
+
+        self.notAnsweredBtnIndex = self.notAnsweredBtnIndex + 1 
                   
 
         
@@ -245,8 +257,10 @@ class guiLogic(Ui_prepare2Pg):
         self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+            self.notAnsweredBtnIndex = self.notAnsweredBtnIndex + 1 
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
+            self.answeredBtnIndex = self.answeredBtnIndex + 1
             
         self.moveToNextQuestion()
 
@@ -327,9 +341,16 @@ p, li { white-space: pre-wrap; }
         ui.optCRadioButton.setChecked(False)
         ui.optDRadioButton.setChecked(False)
         ui.buttonGroup.setExclusive(True)
-                  
-        
 
+
+        ui.answerdBtn.setText(str( self.answeredBtnIndex))
+      
+        ui.answeredAndMarkedForReview.setText(str(self.answeredAndMarkedForReviewIndex))
+        ui.notAnswerdBtn.setText(str(self.notAnsweredBtnIndex))
+        ui.markedForReview.setText(str(self.markedForReviewIndex))
+
+        ui.notVisited.setText('123')
+        
 
 
 if __name__ == "__main__":
