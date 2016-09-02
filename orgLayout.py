@@ -92,13 +92,13 @@ class Ui_prepare2Pg(object):
         self.buttonGroup.addButton(self.optDRadioButton)
         self.frame_5 = QtGui.QFrame(self.centralwidget)
         self.frame_5.setGeometry(QtCore.QRect(970, 0, 271, 711))
-        self.frame_5.setStyleSheet(_fromUtf8("background-color: rgb(170, 255, 255);"))
+        self.frame_5.setStyleSheet(_fromUtf8("background-color: rgb(255, 255, 255);"))
         self.frame_5.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtGui.QFrame.Raised)
         self.frame_5.setObjectName(_fromUtf8("frame_5"))
         self.frame_6 = QtGui.QFrame(self.frame_5)
         self.frame_6.setGeometry(QtCore.QRect(0, 180, 271, 181))
-        self.frame_6.setStyleSheet(_fromUtf8("background-color: rgb(85, 255, 127);\n"
+        self.frame_6.setStyleSheet(_fromUtf8("background-color: rgb(255, 255, 255);\n"
 ""))
         self.frame_6.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtGui.QFrame.Raised)

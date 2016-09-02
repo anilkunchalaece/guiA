@@ -171,39 +171,59 @@ class guiLogic(Ui_prepare2Pg):
         
       
     def reviewAndNextFcn(self):
-        #when next Btn is pressed increment the questionIndex and Display the Question using Index
+       
         print "Review and Next Btn is Clicked"
-        self.questionIndex=newLogic.questionIndex+1
-        if self.questionIndex > self.maxQuestions :
-            self.questionIndex = 1
-        self.retranslateUi(newLogic.questionIndex)
-        self.showPreviosOption(self.questionIndex)
-        #need to add the Review function here
+
+        if ui.optARadioButton.isChecked():
+            print "Option A is Selected"
+            self.selectedOption = 'A'
+        elif ui.optBRadioButton.isChecked():
+            print "Option Bis Selected"
+            self.selectedOption = 'B'
+        elif ui.optCRadioButton.isChecked():
+            print "Option C is Selected"
+            self.selectedOption = 'C'
+        elif ui.optDRadioButton.isChecked():
+            print"Option D is Selected"
+            self.selectedOption = 'D'
+        else:
+            print "No Option selected"
+            self.selectedOption = 'N'
+        
+        self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
+
+        if self.selectedOption == 'N':
+            self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
+        else :
+            self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredAndMarkedForReviewImg.png); }")
+            
+        self.moveToNextQuestion()
+
 
     def clrResponseFcn(self):
         #when Review Btn is Pressed change the color of respective Btn
         print "clr Response Function Selected"
-        #add the Clr Response 
+        
+        #Change the icon
+        self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+        #update the CheckButtons
+        ui.buttonGroup.setExclusive(False)
+        ui.optARadioButton.setChecked(False)
+        ui.optBRadioButton.setChecked(False)
+        ui.optCRadioButton.setChecked(False)
+        ui.optDRadioButton.setChecked(False)
+        ui.buttonGroup.setExclusive(True)
+        #Update the resultDict
+        self.resultDict[self.questionIndex] = 'N'
+                  
 
-    def changeColor(self,Qindex,color):
-        #this function takes Qindex and Color as arguments
-        #Using QIndex we Access the respective Object using "btn" Dictonary created in the Automatic scrollArea Button Addition
-        #we change the Qindex to str since Dic Key value is String
-#        print self.btn[str(Qindex)]
-        if color == 'r':
-            bgColor = "background-color: red"
-        elif color == 'g' :
-            bgColor = "background-color: green"
-        elif color == 'y' :
-            bgColor = "background-color: yellow"
-        self.btn[str(Qindex)].setStyleSheet(bgColor) #Change the color of Respective Btn
         
     def saveAndNextFcn(self):
         # When submit button is pressed see which of the toggle button is checked and select the option accordingly
         # and the store the respective value to the resulDict with QIndex as Key
         # then Change the color of the Respective Button is Scroll btn usinf Qindex 
         
-        print "Submit Btn Pressed"
+        print "Save and Next Function is Selected Btn Pressed"
 
         if ui.optARadioButton.isChecked():
             print "Option A is Selected"
@@ -221,9 +241,20 @@ class guiLogic(Ui_prepare2Pg):
             print "No Option selected"
             self.selectedOption = 'N'
         self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
-        self.changeColor(self.questionIndex,'g') #Change the Color
+        if self.selectedOption == 'N':
+            self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+        else :
+            self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
+            
+        self.moveToNextQuestion()
 
-        #add next function here
+    def moveToNextQuestion(self):
+         #This function increment the questionIndex and Display the Question using Index
+        self.questionIndex=newLogic.questionIndex+1
+        if self.questionIndex > self.maxQuestions :
+            self.questionIndex = 1
+        self.retranslateUi(newLogic.questionIndex)
+        self.showPreviosOption(self.questionIndex)
         
     def submitFcn(self):
         #when endTest btn is clicked Print the Resulting Dict
