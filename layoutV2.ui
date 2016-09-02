@@ -111,7 +111,7 @@ color: rgb(255, 255, 255);</string>
       <string>(i)</string>
      </property>
     </widget>
-    <widget class="QTextBrowser" name="textBrowser_3">
+    <widget class="QTextBrowser" name="questionNo">
      <property name="geometry">
       <rect>
        <x>0</x>

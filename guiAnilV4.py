@@ -275,14 +275,13 @@ class guiLogic(Ui_prepare2Pg):
         #for Question first we are checking the type of Question whether it is a img oriented q?
         x = str(newLogic.data.queDict[str(QIndex)])
         y = str(QIndex)
-
-        #If option is selected then only change the icon to the unanswered
+        
         checked = self.resultDict.get(QIndex,False)
         if checked == False:
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
 
         if x==y:  # if the key and value are same then its a img oriented question
-            html = '''<html>
+            htmlQuestion = '''<html>
                         <head>
                         <title>A Sample Page</title>
                         </head>
@@ -292,7 +291,7 @@ class guiLogic(Ui_prepare2Pg):
                         </body>
                         </html>'''
         else:
-             html =  '''<html>
+             htmlQuestion =  '''<html>
                         <head>
                         <title>A Sample Page</title>
                         </head>
@@ -300,7 +299,17 @@ class guiLogic(Ui_prepare2Pg):
                         '''+str(newLogic.data.queDict[str(QIndex)])+'''
                         </p></body>
                         </html>'''
-        ui.QuestionLabel.setHtml(html)
+        ui.QuestionLabel.setHtml(htmlQuestion)
+
+        htmlQNo = '''
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:12pt; font-weight:600; color:#0055ff;">  QUESTION NO  : ''' + str(self.questionIndex) +'''</span></p></body></html>
+'''
+        ui.questionNo.setHtml(htmlQNo)
+        
         #img = open('123.png', 'rb').read()
         #ui.QuestionLabel.setContent(img, 'image/png')
         #ui.QuestionLabel.setText(_translate("prepare2Pg", newLogic.data.queDict[str(QIndex)], None))

@@ -55,9 +55,9 @@ class Ui_prepare2Pg(object):
 "font: 75 italic 12pt \"MS Sans Serif\";\n"
 "color: rgb(255, 255, 255);"))
         self.pushButton_14.setObjectName(_fromUtf8("pushButton_14"))
-        self.textBrowser_3 = QtGui.QTextBrowser(self.frame_2)
-        self.textBrowser_3.setGeometry(QtCore.QRect(0, 0, 201, 61))
-        self.textBrowser_3.setObjectName(_fromUtf8("textBrowser_3"))
+        self.questionNo = QtGui.QTextBrowser(self.frame_2)
+        self.questionNo.setGeometry(QtCore.QRect(0, 0, 201, 61))
+        self.questionNo.setObjectName(_fromUtf8("questionNo"))
         self.frame_3 = QtGui.QFrame(self.centralwidget)
         self.frame_3.setGeometry(QtCore.QRect(50, 180, 901, 241))
         self.frame_3.setFrameShape(QtGui.QFrame.StyledPanel)
@@ -206,7 +206,7 @@ class Ui_prepare2Pg(object):
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#0055ff;\">TIME REMAINING : 00:00:00</span></p></body></html>", None))
         self.pushButton_14.setText(_translate("prepare2Pg", "(i)", None))
-        self.textBrowser_3.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.questionNo.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
