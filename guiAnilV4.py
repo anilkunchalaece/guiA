@@ -74,11 +74,18 @@ class guiLogic(Ui_prepare2Pg):
         self.x = 0 # x and y values supply as co-ordinates in grid layout in Scroll widget 
         self.y = 0
         self.btn = {} #this will hold the ScrollArea Btn's with name and Object as Key and Value Pairs
-
+        self.addImagesForLegendBtns()
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
         self.timerValue = 0
 #        self.startTimer()
+
+    def addImagesForLegendBtns(self):
+        ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
+        ui.notVisited.setStyleSheet("QPushButton{ background-image: url(btnImages/notVisitedImg.png); }")
+        ui.answeredAndMarkedForReview.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredAndMarkedForReviewImg.png); }")
+        ui.notAnswerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+        ui.markedForReview.setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
 
     def addScrollArea(self):
         for key in range (len(self.data.keys)):

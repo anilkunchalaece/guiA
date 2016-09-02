@@ -275,7 +275,7 @@ p, li { white-space: pre-wrap; }
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="answerdBtn">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -291,7 +291,7 @@ p, li { white-space: pre-wrap; }
        <string>1</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="notVisited">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -307,7 +307,7 @@ p, li { white-space: pre-wrap; }
        <string>3</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="markedForReview">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -323,7 +323,7 @@ p, li { white-space: pre-wrap; }
        <string>4</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="notAnswerdBtn">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -339,7 +339,7 @@ p, li { white-space: pre-wrap; }
        <string>2</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="answeredAndMarkedForReview">
       <property name="geometry">
        <rect>
         <x>10</x>
