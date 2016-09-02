@@ -92,6 +92,7 @@ class guiLogic(Ui_prepare2Pg):
             self.btnKey = str(key+1) #added 1 to key since for loop starts from '0' and Question Index starts from 1
             self.btn[self.btnKey] = QtGui.QPushButton(ui.scrollAreaWidgetContents) # generate pushbutton object and add that object to dictionary for future Reference
             self.btn[self.btnKey].setMaximumSize(QtCore.QSize(40, 40))
+            self.btn[self.btnKey].setMinimumSize(QtCore.QSize(40,40))
             self.btn[self.btnKey].setStyleSheet("QPushButton{ background-image: url(btnImages/notVisitedImg.png); }")#Mark All Questions as UnVisited
             self.btnText = str(key+1) #set the text as key value which is used as reference to Respectiv Question
             self.btn[self.btnKey].setText(self.btnText) #Add the test to the btn
@@ -126,19 +127,20 @@ class guiLogic(Ui_prepare2Pg):
         self.questionIndex = int(MainWindow.sender().text())# from the Object get the Text of Function which is Same as Uid of Question
         self.retranslateUi(self.questionIndex) # Display the respscted QUestion using Question Index
         self.showPreviosOption(self.questionIndex)
+        
 
     def showPreviosOption(self,QIndex):
         #TO Highlight the user Selected Option If user Comes back - Check Issue : https://github.com/anilkunchalaece/pyQtGuiImproved/issues/1
-        self.checked = self.resultDict.get(QIndex,False)
-        if self.checked:
-            print self.checked
-            if self.checked == 'A':
+        checked = self.resultDict.get(QIndex,False)
+        if checked:
+            print checked
+            if checked == 'A':
                 ui.optARadioButton.setChecked(True)
-            elif self.checked == 'B':
+            elif checked == 'B':
                 ui.optBRadioButton.setChecked(True)
-            elif self.checked == 'C':
+            elif checked == 'C':
                 ui.optCRadioButton.setChecked(True)
-            elif self.checked == 'D':
+            elif checked == 'D':
                 ui.optDRadioButton.setChecked(True)
                 
                 
@@ -273,8 +275,10 @@ class guiLogic(Ui_prepare2Pg):
         #for Question first we are checking the type of Question whether it is a img oriented q?
         x = str(newLogic.data.queDict[str(QIndex)])
         y = str(QIndex)
-
-        self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+        
+        checked = self.resultDict.get(QIndex,False)
+        if checked == False:
+            self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
 
         if x==y:  # if the key and value are same then its a img oriented question
             html = '''<html>
