@@ -274,6 +274,8 @@ class guiLogic(Ui_prepare2Pg):
         x = str(newLogic.data.queDict[str(QIndex)])
         y = str(QIndex)
 
+        self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
+
         if x==y:  # if the key and value are same then its a img oriented question
             html = '''<html>
                         <head>
