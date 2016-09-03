@@ -77,8 +77,8 @@ class guiLogic(Ui_prepare2Pg):
         self.addImagesForLegendBtns()
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
-        
-        self.timerValue = 0
+        #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
+        self.timerValue = int(self.data.testTime)*60
         
         # answered = 'a' 
         # notVisited = 'b'
@@ -88,7 +88,14 @@ class guiLogic(Ui_prepare2Pg):
 
         self.statusDict = {}
  
-#        self.startTimer()
+        self.startTimer()
+
+
+        ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Roboto'; font-size:12pt; font-weight:200; font-style:normal;">
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-size:26pt; font-weight:400; color:#aa5500;">''' + self.data.testName + '''</span></p></body></html>''')
 
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
@@ -164,19 +171,22 @@ class guiLogic(Ui_prepare2Pg):
         # this function increments the self.timerValue variable which is converted to hh:mm:ss 
         m, s = divmod(self.timerValue, 60)
         h, m = divmod(m, 60)
-        self.time = str(h) + ':' + str(m)+':'+str(s) 
-        ui.lcdNumber.display(self.time)
-        self.timerValue = self.timerValue + 1
+        timeValue = str(h) + ':' + str(m)+':'+str(s)
+
+        ui.timeRemaining.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Roboto'; font-size:12pt; font-weight:200; font-style:normal;">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-weight:600; color:#0055ff;">TIME REMAINING : ''' + timeValue + '''</span></p></body></html>''')
+
+        self.timerValue = self.timerValue - 1
 
     def startTimer(self):
         #Start the timer at the Begining of the Test
         #for every 1 sec call the updateLcd Function 
-        ui.lcdNumber.setDigitCount(8)
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.updateLcd)
         self.timer.start(1000) 
-        ui.lcdNumber.show() 
-        ui.lcdNumber.display('0:0:0')
     
     def setupLogic(self):
         #Assign the Duties for Buttons

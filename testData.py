@@ -46,27 +46,33 @@ The Automatically Added Key and Uid is added to the keyDict where key is the Que
 Original Question
 
 """
-        self.getQue = r"\<q\>(.+?)\<\/q\>" #re pattern used to split the received data into List Questions
+        getQue = r"\<q\>(.+?)\<\/q\>" #re pattern used to split the received data into List Questions
 
-        self.cutQue = r"(\d+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)$" #re pattern used to Each question in list into Question and Options
+        cutQue = r"(\d+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)\|\|(.+?)$" #re pattern used to Each question in list into Question and Options
 
-        self.getImgUrl = r"src\=\"(.+?)\"" #re pattern used to check whether Question has Img Url and Parse the Url
+        getImgUrl = r"src\=\"(.+?)\"" #re pattern used to check whether Question has Img Url and Parse the Url
 
-        self.getImgQue = r"\>(.+?)$" #re pattern to parse question along with Question
+        getImgQue = r"\>(.+?)$" #re pattern to parse question along with Question
 
-        for queOpt in re.findall(self.getQue,self.page.translate(None,'\n\r\t')):
-            for opt in re.findall(self.cutQue,queOpt):
+        getTestName = r"\<m>(.+?)\<\/m\>" # re pattern used for test name
+        getTestTime = r"\<t>(.+?)\<\/t\>" # re pattern used for test time
+
+        self.testName = re.findall(getTestName,self.page)[0]
+        self.testTime = re.findall(getTestTime,self.page)[0]
+
+        for queOpt in re.findall(getQue,self.page.translate(None,'\n\r\t')):
+            for opt in re.findall(cutQue,queOpt):
                 self.keys.append(self.key)
                 self.keyDict[str(self.key)] = opt[0]
 
                 self.queDict[str(self.key)] = opt[1] #fixed bug here from previous code
                 #check whether we received the Img in Question..
-                self.qImg = re.findall(self.getImgUrl,opt[1])
+                self.qImg = re.findall(getImgUrl,opt[1])
                 if self.qImg :
                     #If we received the Image in the Question.. we Fill the imgUrlDict andimgQueDict with Img Url and Img Question
                     #w replace the keyword as a Value in queDict to alert we got Image
                     self.imgUrlDict[str(self.key)] = self.qImg[0]
-                    self.imgQueDict[str(self.key)] = re.findall(self.getImgQue,opt[1]) #fixed the bug here from previous code
+                    self.imgQueDict[str(self.key)] = re.findall(getImgQue,opt[1]) #fixed the bug here from previous code
                     self.queDict[str(self.key)] = self.key
 
                 

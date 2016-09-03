@@ -2,7 +2,8 @@
 
 # Form implementation generated from reading ui file 'layoutV2.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created: Sat Sep  3 12:35:33 2016
+#      by: PyQt4 UI code generator 4.11.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -34,17 +35,17 @@ class Ui_prepare2Pg(object):
         self.frame.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtGui.QFrame.Raised)
         self.frame.setObjectName(_fromUtf8("frame"))
-        self.textBrowser_5 = QtGui.QTextBrowser(self.frame)
-        self.textBrowser_5.setGeometry(QtCore.QRect(0, 0, 901, 101))
-        self.textBrowser_5.setObjectName(_fromUtf8("textBrowser_5"))
+        self.examTitle = QtGui.QTextBrowser(self.frame)
+        self.examTitle.setGeometry(QtCore.QRect(0, 0, 901, 101))
+        self.examTitle.setObjectName(_fromUtf8("examTitle"))
         self.frame_2 = QtGui.QFrame(self.centralwidget)
         self.frame_2.setGeometry(QtCore.QRect(50, 110, 902, 62))
         self.frame_2.setFrameShape(QtGui.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtGui.QFrame.Raised)
         self.frame_2.setObjectName(_fromUtf8("frame_2"))
-        self.textBrowser = QtGui.QTextBrowser(self.frame_2)
-        self.textBrowser.setGeometry(QtCore.QRect(640, 0, 261, 61))
-        self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
+        self.timeRemaining = QtGui.QTextBrowser(self.frame_2)
+        self.timeRemaining.setGeometry(QtCore.QRect(640, 0, 261, 61))
+        self.timeRemaining.setObjectName(_fromUtf8("timeRemaining"))
         self.textBrowser_2 = QtGui.QTextBrowser(self.frame_2)
         self.textBrowser_2.setGeometry(QtCore.QRect(200, 0, 441, 61))
         self.textBrowser_2.setObjectName(_fromUtf8("textBrowser_2"))
@@ -183,7 +184,7 @@ class Ui_prepare2Pg(object):
         self.saveAndNextBtn.setObjectName(_fromUtf8("saveAndNextBtn"))
         prepare2Pg.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(prepare2Pg)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1245, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1245, 27))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         prepare2Pg.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(prepare2Pg)
@@ -195,27 +196,27 @@ class Ui_prepare2Pg(object):
 
     def retranslateUi(self, prepare2Pg):
         prepare2Pg.setWindowTitle(_translate("prepare2Pg", "MainWindow", None))
-        self.textBrowser_5.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.examTitle.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:26pt; color:#aa5500;\">EXAM TITLE</span></p></body></html>", None))
-        self.textBrowser.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:26pt; font-weight:400; color:#aa5500;\">EXAM TITLE</span></p></body></html>", None))
+        self.timeRemaining.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#0055ff;\">TIME REMAINING : 00:00:00</span></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\">TIME REMAINING : 00:00:00</span></p></body></html>", None))
         self.pushButton_14.setText(_translate("prepare2Pg", "(i)", None))
         self.questionNo.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#0055ff;\">QUESTION NO  :  1</span></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\">QUESTION NO  :  1</span></p></body></html>", None))
         self.QuestionLabel.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400;\"><br /></p></body></html>", None))
         self.optARadioButton.setText(_translate("prepare2Pg", "RadioButton", None))
         self.optBRadioButton.setText(_translate("prepare2Pg", "RadioButton", None))
         self.optCRadioButton.setText(_translate("prepare2Pg", "RadioButton", None))
@@ -234,25 +235,25 @@ class Ui_prepare2Pg(object):
         self.textEdit_8.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:11pt; font-weight:600; color:#ffffff;\">LEGEND</span></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:11pt; font-weight:600; color:#ffffff;\">LEGEND</span></p></body></html>", None))
         self.textBrowser_4.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#0055ff;\">NAME :</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt; font-weight:600; color:#0055ff;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt; font-weight:600; color:#0055ff;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt; font-weight:600; color:#0055ff;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#0055ff;\">Ht.No:</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt; font-weight:600; color:#0055ff;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:12pt; font-weight:600; color:#0055ff;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\">NAME :</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\"><br /></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\">Ht.No:</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600; color:#0055ff;\"><br /></p></body></html>", None))
         self.textBrowser_6.setHtml(_translate("prepare2Pg", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">       </span></p></body></html>", None))
+"</style></head><body style=\" font-family:\'Roboto\'; font-size:12pt; font-weight:200; font-style:normal;\">\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400;\"><br /></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400;\">       </span></p></body></html>", None))
         self.reviewAndNextBtn.setText(_translate("prepare2Pg", "Mark For Review And Next", None))
         self.clrResponseBtn.setText(_translate("prepare2Pg", "Clear Response", None))
         self.saveAndNextBtn.setText(_translate("prepare2Pg", "Save And  Next", None))
