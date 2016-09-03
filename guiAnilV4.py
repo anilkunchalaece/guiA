@@ -10,6 +10,9 @@ from orgLayout import Ui_prepare2Pg
 import csv
 #import the TestData
 from testData import TestData
+#import Ui_testCompleted from completed which is closing dialog Ui
+from completed import Ui_testCompleted
+
 #Import the PyQt Core and Gui Libraries
 from PyQt4 import QtCore, QtGui
 import os  # to get the files path etc..
@@ -78,7 +81,7 @@ class guiLogic(Ui_prepare2Pg):
         self.addScrollArea() #add scroll area when object is called
         self.setupLogic()#start the logic.. (I dont find a Good name for that method)
         #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
-        self.timerValue = int(self.data.testTime)*60
+        self.timerValue = 5#int(self.data.testTime)*60
         
         # answered = 'a' 
         # notVisited = 'b'
@@ -180,6 +183,12 @@ p, li { white-space: pre-wrap; }
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-weight:600; color:#0055ff;">TIME REMAINING : ''' + timeValue + '''</span></p></body></html>''')
 
         self.timerValue = self.timerValue - 1
+
+        if self.timerValue == 0:
+           #when time is Completed we are hiding the mainwindow and Showing the Dialog Button
+            MainWindow.hide()
+            exitDialog.show()
+             
 
     def startTimer(self):
         #Start the timer at the Begining of the Test
@@ -401,12 +410,17 @@ if __name__ == "__main__":
     import sys
     import os
     import urllib2, urllib
+    
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     ui = Ui_prepare2Pg()
     ui.setupUi(MainWindow)
     MainWindow.show()
     newLogic = guiLogic()
+    exitDialog = QtGui.QDialog()
+    testCompleted = Ui_testCompleted()
+    testCompleted.setupUi(exitDialog)
     newLogic.retranslateUi(newLogic.questionIndex)
     sys.exit(app.exec_())
-    
+
+  

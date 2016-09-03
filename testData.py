@@ -26,7 +26,7 @@ class TestData(object):
         self.imgUrlDict = {}
         self.imgQueDict = {}
                 
-        self.mydata=[('ID',102),('two',2)]    #The first is the var name the second is the value
+        self.mydata=[('ID',104),('two',2)]    #The first is the var name the second is the value
         self.mydata=urllib.urlencode(self.mydata)
         self.path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
         self.req=urllib2.Request(self.path, self.mydata)
