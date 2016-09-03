@@ -277,8 +277,10 @@ class guiLogic(Ui_prepare2Pg):
         self.questionIndex=newLogic.questionIndex+1
         if self.questionIndex > self.maxQuestions :
             self.questionIndex = 1
+        self.statusDict[self.questionIndex] = 'd'
         self.retranslateUi(newLogic.questionIndex)
         self.showPreviosOption(self.questionIndex)
+
         
     def submitFcn(self):
         #when endTest btn is clicked Print the Resulting Dict
