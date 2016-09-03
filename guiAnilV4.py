@@ -347,9 +347,9 @@ p, li { white-space: pre-wrap; }
         ui.buttonGroup.setExclusive(True)
 
         totalA = 0
-        totalB = 0
+        totalB = 1
         totalC = 0
-        totalD = 0
+        totalD = 1
         totalE = 0
 
         for k in self.statusDict:
