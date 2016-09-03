@@ -135,8 +135,12 @@ class guiLogic(Ui_prepare2Pg):
         print MainWindow.sender().text() #this will grab the Pushbutton Reference Object From Mainwindow which is used to access the Btn Data
         #when the scroll Btn is Pressed with Reference Key Id call retranslateUi with key function
         self.questionIndex = int(MainWindow.sender().text())# from the Object get the Text of Function which is Same as Uid of Question
+
+        self.statusDict[self.questionIndex] = 'd'
+
         self.retranslateUi(self.questionIndex) # Display the respscted QUestion using Question Index
         self.showPreviosOption(self.questionIndex)
+        
         
 
     def showPreviosOption(self,QIndex):
@@ -347,10 +351,10 @@ p, li { white-space: pre-wrap; }
         ui.buttonGroup.setExclusive(True)
 
         totalA = 0
-        totalB = 1
         totalC = 0
         totalD = 1
         totalE = 0
+        totalB = 1
 
         for k in self.statusDict:
             status = self.statusDict[k]
