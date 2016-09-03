@@ -80,12 +80,14 @@ class guiLogic(Ui_prepare2Pg):
         
         self.timerValue = 0
         
-        self.answeredBtnIndex = 0
-        self.notVisitedIndex = 0
-        self.answeredAndMarkedForReviewIndex=0
-        self.notAnsweredBtnIndex = 0
-        self.markedForReviewIndex = 0
-        
+        # answered = 'a' 
+        # notVisited = 'b'
+        # answeredAndMarkedForReview= 'c'
+        # notAnsweredBtn = 'd'
+        # markedForReview = 'e'
+
+        self.statusDict = {}
+ 
 #        self.startTimer()
 
     def addImagesForLegendBtns(self):
@@ -204,10 +206,10 @@ class guiLogic(Ui_prepare2Pg):
 
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
-            self.markedForReviewIndex = self.markedForReviewIndex + 1
+            self.statusDict[self.questionIndex] = 'e' #Marked for Review
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredAndMarkedForReviewImg.png); }")
-            self.answeredAndMarkedForReviewIndex = self.answeredAndMarkedForReviewIndex+1
+            self.statusDict[self.questionIndex] = 'c' #answred and Marked for Review
             
         self.moveToNextQuestion()
 
@@ -228,7 +230,7 @@ class guiLogic(Ui_prepare2Pg):
         #Update the resultDict
         self.resultDict[self.questionIndex] = 'N'
 
-        self.notAnsweredBtnIndex = self.notAnsweredBtnIndex + 1 
+        self.statusDict[self.questionIndex] = 'd' # Not Answered 
                   
 
         
@@ -254,13 +256,15 @@ class guiLogic(Ui_prepare2Pg):
         else:
             print "No Option selected"
             self.selectedOption = 'N'
+            
         self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
-            self.notAnsweredBtnIndex = self.notAnsweredBtnIndex + 1 
+            
+            self.statusDict[self.questionIndex] = 'd'#unanswered
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
-            self.answeredBtnIndex = self.answeredBtnIndex + 1
+            self.statusDict[self.questionIndex] = 'a'
             
         self.moveToNextQuestion()
 
@@ -342,14 +346,38 @@ p, li { white-space: pre-wrap; }
         ui.optDRadioButton.setChecked(False)
         ui.buttonGroup.setExclusive(True)
 
+        totalA = 0
+        totalB = 0
+        totalC = 0
+        totalD = 0
+        totalE = 0
 
-        ui.answerdBtn.setText(str( self.answeredBtnIndex))
+        for k in self.statusDict:
+            status = self.statusDict[k]
+            if status == 'a':
+                totalA = totalA + 1
+            elif status == 'c':
+                totalC = totalC+1
+            elif status == 'd':
+                totalD = totalD+1
+            else:
+                totalE = totalE+1
+
+        print totalA
+        print totalC
+        print totalD
+        print totalE
+        totalB= self.maxQuestions - totalA-totalC-totalD-totalE
+                
+
+
+        ui.answerdBtn.setText(str( totalA))
       
-        ui.answeredAndMarkedForReview.setText(str(self.answeredAndMarkedForReviewIndex))
-        ui.notAnswerdBtn.setText(str(self.notAnsweredBtnIndex))
-        ui.markedForReview.setText(str(self.markedForReviewIndex))
-
-        ui.notVisited.setText('123')
+        ui.answeredAndMarkedForReview.setText(str(totalC))
+        ui.notAnswerdBtn.setText(str(totalD))
+        ui.markedForReview.setText(str(totalE))
+        
+        ui.notVisited.setText(str(totalB))
         
 
 
