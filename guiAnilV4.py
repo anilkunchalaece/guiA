@@ -12,6 +12,8 @@ import csv
 from testData import TestData
 #import Ui_testCompleted from completed which is closing dialog Ui
 from completed import Ui_testCompleted
+#import the Login Dialog
+from login import Ui_Login
 
 #Import the PyQt Core and Gui Libraries
 from PyQt4 import QtCore, QtGui
@@ -93,6 +95,13 @@ class guiLogic(Ui_prepare2Pg):
  
         self.startTimer()
 
+        #we are Creating login Class within the guiLogic Class since we need to access the Variables in the login Screen Class with in the guiLogic Class
+        self.loginScreen = Ui_Login()
+        self.loginScreen.setupUi(loginDialog)
+        loginDialog.show()
+
+        #setup Login Screen
+        self.setupLogin()
 
         ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
@@ -100,6 +109,14 @@ p, li { white-space: pre-wrap; }
 </style></head><body style=" font-family:'Roboto'; font-size:12pt; font-weight:200; font-style:normal;">
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-size:26pt; font-weight:400; color:#aa5500;">''' + self.data.testName + '''</span></p></body></html>''')
 
+    def setupLogin(self):
+        self.loginScreen.loginBtn.clicked.connect(self.loginFcn)
+
+    def loginFcn(self):
+        print "Login Btn is Clicked"
+        loginDialog.close() # Close the login Dialog
+        MainWindow.show() # Open the MainWindow
+        
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
         ui.notVisited.setStyleSheet("QPushButton{ background-image: url(btnImages/notVisitedImg.png); }")
@@ -413,13 +430,21 @@ if __name__ == "__main__":
     
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
+    exitDialog = QtGui.QDialog()
+    loginDialog = QtGui.QDialog()
+
+    
     ui = Ui_prepare2Pg()
     ui.setupUi(MainWindow)
-    MainWindow.show()
+    
     newLogic = guiLogic()
-    exitDialog = QtGui.QDialog()
+    
     testCompleted = Ui_testCompleted()
     testCompleted.setupUi(exitDialog)
+
+
+
+    
     newLogic.retranslateUi(newLogic.questionIndex)
     sys.exit(app.exec_())
 
