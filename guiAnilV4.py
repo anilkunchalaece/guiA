@@ -70,7 +70,7 @@ is the key value for Each Dict variables
 class guiLogic(Ui_prepare2Pg):
     def __init__(self):
         self.questionIndex = 1 #variable to hold the questionIndex it is hero of our movie
-        self.data = TestData() # Create a TestData Object which supply necessary Ingredients
+        self.data = TestData(104,2,'anil',123) # Create a TestData Object which supply necessary Ingredients
         self.maxQuestions = len(self.data.queDict) # 
         self.rows = 4 # it is used to hold the  max no of rows we want in scroll widget
         self.rowAddition = self.rows #this is just a copy of rows value which is used in Automatic generation of btn's in Scroll Area
@@ -93,7 +93,7 @@ class guiLogic(Ui_prepare2Pg):
 
         self.statusDict = {}
  
-        self.startTimer()
+       
 
         #we are Creating login Class within the guiLogic Class since we need to access the Variables in the login Screen Class with in the guiLogic Class
         self.loginScreen = Ui_Login()
@@ -115,7 +115,9 @@ p, li { white-space: pre-wrap; }
     def loginFcn(self):
         print "Login Btn is Clicked"
         loginDialog.close() # Close the login Dialog
+        
         MainWindow.show() # Open the MainWindow
+        self.startTimer() # Start the timer Only After showing MainWindow
         
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
