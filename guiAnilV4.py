@@ -70,8 +70,8 @@ is the key value for Each Dict variables
 class guiLogic(Ui_prepare2Pg):
     def __init__(self):
         self.questionIndex = 1 #variable to hold the questionIndex it is hero of our movie
-        self.data = TestData(104,2,'anil',123) # Create a TestData Object which supply necessary Ingredients
-        self.maxQuestions = len(self.data.queDict) # 
+        
+  
         self.rows = 4 # it is used to hold the  max no of rows we want in scroll widget
         self.rowAddition = self.rows #this is just a copy of rows value which is used in Automatic generation of btn's in Scroll Area
         self.resultDict = { } # it holds the user selected Options
@@ -80,10 +80,7 @@ class guiLogic(Ui_prepare2Pg):
         self.y = 0
         self.btn = {} #this will hold the ScrollArea Btn's with name and Object as Key and Value Pairs
         self.addImagesForLegendBtns()
-        self.addScrollArea() #add scroll area when object is called
-        self.setupLogic()#start the logic.. (I dont find a Good name for that method)
-        #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
-        self.timerValue = 5#int(self.data.testTime)*60
+        
         
         # answered = 'a' 
         # notVisited = 'b'
@@ -103,21 +100,40 @@ class guiLogic(Ui_prepare2Pg):
         #setup Login Screen
         self.setupLogin()
 
+       
+    def setupLogin(self):
+
+        self.loginScreen.loginBtn.clicked.connect(self.loginFcn)
+
+
+    def loginFcn(self):
+        print "Login Btn is Clicked"
+        
+        _userName = str(self.loginScreen.username_txt.text())
+        _userPswd = str(self.loginScreen.pass_txt.text())
+
+        print _userName
+        print _userPswd
+
+        loginDialog.close() # Close the login Dialog
+        
+        self.data = TestData(104,2,_userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
+        self.maxQuestions = len(self.data.queDict)
+
+        self.addScrollArea() #add scroll area when object is called
+        self.setupLogic()#start the logic.. (I dont find a Good name for that method)
+        #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
+        self.timerValue = 5#int(self.data.testTime)*60
+
+        MainWindow.show() # Open the MainWindow
+        self.startTimer() # Start the timer Only After showing MainWindow
+
         ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
 </style></head><body style=" font-family:'Roboto'; font-size:12pt; font-weight:200; font-style:normal;">
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-size:26pt; font-weight:400; color:#aa5500;">''' + self.data.testName + '''</span></p></body></html>''')
-
-    def setupLogin(self):
-        self.loginScreen.loginBtn.clicked.connect(self.loginFcn)
-
-    def loginFcn(self):
-        print "Login Btn is Clicked"
-        loginDialog.close() # Close the login Dialog
-        
-        MainWindow.show() # Open the MainWindow
-        self.startTimer() # Start the timer Only After showing MainWindow
+        newLogic.retranslateUi(newLogic.questionIndex)
         
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
@@ -444,10 +460,7 @@ if __name__ == "__main__":
     testCompleted = Ui_testCompleted()
     testCompleted.setupUi(exitDialog)
 
-
-
-    
-    newLogic.retranslateUi(newLogic.questionIndex)
+   
     sys.exit(app.exec_())
 
   
