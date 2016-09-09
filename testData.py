@@ -11,7 +11,7 @@ import shutil
 #Date : 30 Aug 2016 - Avoid the' \n\r' characters in received string
 #http://stackoverflow.com/questions/1185524/how-to-trim-whitespace-including-tabs
 class TestData(object):
-    def __init__(self):
+    def __init__(self,testId,valueId,userName,userPswd):
         #f = open('anatomy_questions.csv','rt')
         #reader = csv.reader(f)
         #self.keys = [] This is useless List Not needed Anymore - 9th Sep 2016
@@ -25,13 +25,18 @@ class TestData(object):
         #imgDict and imDict uses the Normal Keywords Not Uid of Questons as Key Values
         self.imgUrlDict = {}
         self.imgQueDict = {}
+
+        _testId = testId
+        _valueId = valueId
+        _userName = userName
+        _userPswd = userPswd
                 
-        self.mydata=[('ID',104),('two',2)]    #The first is the var name the second is the value
-        self.mydata=urllib.urlencode(self.mydata)
-        self.path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
-        self.req=urllib2.Request(self.path, self.mydata)
-        self.req.add_header("Content-type", "application/x-www-form-urlencoded")
-        self.page=urllib2.urlopen(self.req).read()
+        _mydata=[('ID',_testId),('two',_valueId),('UID',_userName),('UPSWD',_userPswd)]    #The first is the var name the second is the value
+        _mydata=urllib.urlencode(_mydata)
+        _path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
+        _req=urllib2.Request(_path, _mydata)
+        _req.add_header("Content-type", "application/x-www-form-urlencoded")
+        _page=urllib2.urlopen(_req).read()
 
         """
 The Received Data is in the Form
@@ -57,10 +62,10 @@ Original Question
         getTestName = r"\<m>(.+?)\<\/m\>" # re pattern used for test name
         getTestTime = r"\<t>(.+?)\<\/t\>" # re pattern used for test time
 
-        self.testName = re.findall(getTestName,self.page)[0]
-        self.testTime = re.findall(getTestTime,self.page)[0]
+        self.testName = re.findall(getTestName,_page)[0]
+        self.testTime = re.findall(getTestTime,_page)[0]
 
-        for queOpt in re.findall(getQue,self.page.translate(None,'\n\r\t')):
+        for queOpt in re.findall(getQue,_page.translate(None,'\n\r\t')):
             for opt in re.findall(cutQue,queOpt):
                 #self.keys.append(self.key) #Useless List 
                 self.keyDict[str(_key)] = opt[0]
@@ -110,7 +115,7 @@ This is used for CSV Reader
 
 if __name__ == "__main__":
    
-    data = TestData()
+    data = TestData(104,2,'anil',123)
     print "no of Questions"
     print len(data.keyDict)
     #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
