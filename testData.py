@@ -14,14 +14,14 @@ class TestData(object):
     def __init__(self):
         #f = open('anatomy_questions.csv','rt')
         #reader = csv.reader(f)
-        self.keys = []
+        #self.keys = [] This is useless List Not needed Anymore - 9th Sep 2016
         self.queDict = {}
         self.optADict = {}
         self.optBDict = {}
         self.optCDict = {}
         self.optDDict = {}
-        self.keyDict = {}
-        self.key = 1
+        self.keyDict = {} #Key Dict is used for Remapping Uid Values with Temporary key Values
+        _key = 1 # used for keyDict as a Kay Value
         #imgDict and imDict uses the Normal Keywords Not Uid of Questons as Key Values
         self.imgUrlDict = {}
         self.imgQueDict = {}
@@ -62,25 +62,25 @@ Original Question
 
         for queOpt in re.findall(getQue,self.page.translate(None,'\n\r\t')):
             for opt in re.findall(cutQue,queOpt):
-                self.keys.append(self.key)
-                self.keyDict[str(self.key)] = opt[0]
+                #self.keys.append(self.key) #Useless List 
+                self.keyDict[str(_key)] = opt[0]
 
-                self.queDict[str(self.key)] = opt[1] #fixed bug here from previous code
+                self.queDict[str(_key)] = opt[1] #fixed bug here from previous code
                 #check whether we received the Img in Question..
                 self.qImg = re.findall(getImgUrl,opt[1])
                 if self.qImg :
                     #If we received the Image in the Question.. we Fill the imgUrlDict andimgQueDict with Img Url and Img Question
                     #w replace the keyword as a Value in queDict to alert we got Image
-                    self.imgUrlDict[str(self.key)] = self.qImg[0]
-                    self.imgQueDict[str(self.key)] = re.findall(getImgQue,opt[1]) #fixed the bug here from previous code
-                    self.queDict[str(self.key)] = self.key
+                    self.imgUrlDict[str(_key)] = self.qImg[0]
+                    self.imgQueDict[str(_key)] = re.findall(getImgQue,opt[1]) #fixed the bug here from previous code
+                    self.queDict[str(_key)] = _key
 
                 
-                self.optADict[str(self.key)] = opt[2]
-                self.optBDict[str(self.key)] = opt[3]
-                self.optCDict[str(self.key)] = opt[4]
-                self.optDDict[str(self.key)] = opt[5]
-                self.key = self.key + 1
+                self.optADict[str(_key)] = opt[2]
+                self.optBDict[str(_key)] = opt[3]
+                self.optCDict[str(_key)] = opt[4]
+                self.optDDict[str(_key)] = opt[5]
+                _key = _key + 1
         #Get the Images and Save them in local Temp Directory if there is already Directory Delete it
         #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
         if os.path.isdir('temp'):
@@ -112,7 +112,7 @@ if __name__ == "__main__":
    
     data = TestData()
     print "no of Questions"
-    print len(data.keys)
+    print len(data.keyDict)
     #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
     #print data.imgUrlDict["1"]
     """

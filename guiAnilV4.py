@@ -125,7 +125,7 @@ p, li { white-space: pre-wrap; }
         ui.markedForReview.setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
 
     def addScrollArea(self):
-        for key in range (len(self.data.keys)):
+        for key in range (len(self.data.keyDict)):
             self.btnKey = str(key+1) #added 1 to key since for loop starts from '0' and Question Index starts from 1
             self.btn[self.btnKey] = QtGui.QPushButton(ui.scrollAreaWidgetContents) # generate pushbutton object and add that object to dictionary for future Reference
             self.btn[self.btnKey].setMaximumSize(QtCore.QSize(40, 40))
