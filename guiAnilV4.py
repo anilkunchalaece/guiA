@@ -358,10 +358,29 @@ p, li { white-space: pre-wrap; }
         
     def submitFcn(self):
         #when endTest btn is clicked Print the Resulting Dict
+        #Do the Remapping qId's with uId's and store the Uid's and Corresponding option Strings in the _outputDict
         
         print "endTest Btn Pressed"
         print "Output Dict is "
-        print self.resultDict
+        print self.resultDict #Result Dict used in Program
+        _outputDict = {}
+        for key in self.resultDict :
+            _uId = self.data.keyDict[str(key)]#get the Corresponding UId for qId
+            _opt = self.resultDict[key]
+           
+
+            if _opt == 'A':
+                _outputDict[_uId] = self.data.optADict[str(key)]
+            elif _opt == 'B':
+                _outputDict[_uId] = self.data.optBDict[str(key)]
+            elif _opt == 'C':
+                _outputDict[_uId] = self.data.optCDict[str(key)]
+            elif _opt == 'D':
+                _outputDict[_uId] = self.data.optDDict[str(key)]
+            #print outputDict
+        print 'Dict sent to Via Post Request is'       
+        print _outputDict
+        
         shutil.rmtree("temp") # delete the temporary directory
         self.closeExam()
 
