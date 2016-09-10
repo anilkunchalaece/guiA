@@ -14,6 +14,8 @@ from testData import TestData
 from completed import Ui_testCompleted
 #import the Login Dialog
 from login import Ui_Login
+#import the Terms and Condition Dialog
+from terms import Ui_Terms
 
 #Import the PyQt Core and Gui Libraries
 from PyQt4 import QtCore, QtGui
@@ -93,10 +95,14 @@ class guiLogic(Ui_prepare2Pg):
        
 
         #we are Creating login Class within the guiLogic Class since we need to access the Variables in the login Screen Class with in the guiLogic Class
+        
         self.loginScreen = Ui_Login()
         self.loginScreen.setupUi(loginDialog)
         loginDialog.show()
 
+
+        self.termsScreen = Ui_Terms()
+        self.termsScreen.setupUi(termsDialog)
         #setup Login Screen
         self.setupLogin()
 
@@ -116,24 +122,35 @@ class guiLogic(Ui_prepare2Pg):
         print _userPswd
 
         loginDialog.close() # Close the login Dialog
+
+        termsDialog.show() #Show the Terms Dialog
         
         self.data = TestData(104,2,_userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
         self.maxQuestions = len(self.data.queDict)
 
-        self.addScrollArea() #add scroll area when object is called
-        self.setupLogic()#start the logic.. (I dont find a Good name for that method)
-        #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
-        self.timerValue = 5#int(self.data.testTime)*60
+        self.termsScreen.pushButton.clicked.connect(self.termsBtnFcn)
 
-        MainWindow.show() # Open the MainWindow
-        self.startTimer() # Start the timer Only After showing MainWindow
+    def termsBtnFcn(self):
+        print "Next Btn in Terms is Clicked"
+        if self.termsScreen.checkBox.isChecked():
+            termsDialog.close() #Close the Terms Dialog
+            print "User Accepted Terms and Conditions"
+            self.addScrollArea() #add scroll area when object is called
+            self.setupLogic()#start the logic.. (I dont find a Good name for that method)
+            #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
+            self.timerValue = 5#int(self.data.testTime)*60
 
-        ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+            MainWindow.show() # Open the MainWindow
+            self.startTimer() # Start the timer Only After showing MainWindow
+
+            ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
 </style></head><body style=" font-family:'Roboto'; font-size:12pt; font-weight:200; font-style:normal;">
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'MS Shell Dlg 2'; font-size:26pt; font-weight:400; color:#aa5500;">''' + self.data.testName + '''</span></p></body></html>''')
-        newLogic.retranslateUi(newLogic.questionIndex)
+            newLogic.retranslateUi(newLogic.questionIndex)
+        else:
+            print "Please accept Terms and Conditions"
         
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
@@ -449,16 +466,21 @@ if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     MainWindow = QtGui.QMainWindow()
     exitDialog = QtGui.QDialog()
-    loginDialog = QtGui.QDialog()
+   
 
     
     ui = Ui_prepare2Pg()
     ui.setupUi(MainWindow)
+
+    loginDialog = QtGui.QDialog()
+    termsDialog = QtGui.QDialog()
     
     newLogic = guiLogic()
     
     testCompleted = Ui_testCompleted()
     testCompleted.setupUi(exitDialog)
+
+    
 
    
     sys.exit(app.exec_())
