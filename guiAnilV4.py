@@ -138,7 +138,7 @@ class guiLogic(Ui_prepare2Pg):
             self.addScrollArea() #add scroll area when object is called
             self.setupLogic()#start the logic.. (I dont find a Good name for that method)
             #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
-            self.timerValue = 5#int(self.data.testTime)*60
+            self.timerValue = int(self.data.testTime)*60
 
             MainWindow.show() # Open the MainWindow
             self.startTimer() # Start the timer Only After showing MainWindow
@@ -238,8 +238,11 @@ p, li { white-space: pre-wrap; }
 
         if self.timerValue == 0:
            #when time is Completed we are hiding the mainwindow and Showing the Dialog Button
-            MainWindow.hide()
-            exitDialog.show()
+            self.closeExam()
+#Exam Closing Fucntion
+    def closeExam(self):
+        MainWindow.hide()
+        exitDialog.show()
              
 
     def startTimer(self):
@@ -360,6 +363,7 @@ p, li { white-space: pre-wrap; }
         print "Output Dict is "
         print self.resultDict
         shutil.rmtree("temp") # delete the temporary directory
+        self.closeExam()
 
     def retranslateUi(self,QIndex):
         #this function takes QIndex as argument
