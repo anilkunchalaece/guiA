@@ -114,22 +114,28 @@ class guiLogic(Ui_prepare2Pg):
 
     def loginFcn(self):
         print "Login Btn is Clicked"
-        
+         
         _userName = str(self.loginScreen.username_txt.text())
         _userPswd = str(self.loginScreen.pass_txt.text())
+        _userTId = str(self.loginScreen.tid_txt.text())
 
         print _userName
         print _userPswd
-
-        loginDialog.close() # Close the login Dialog
-
-        termsDialog.show() #Show the Terms Dialog
+        print _userTId
         
-        self.data = TestData(104,2,_userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
-        self.maxQuestions = len(self.data.queDict)
+       
+        self.data = TestData(_userTId,_userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
+        self.data.maxQuestions = len(self.data.queDict)
+        if self.data.maxQuestions == 0:
+            print "I got Zero Questions"
+            print "username || Password || Test Id is wrong"
+            self.loginScreen.invalidLogin.setText("Invalid User name or Password")
+        else :
+            loginDialog.close() # Close the login Dialog
+            termsDialog.show() #Show the Terms Dialog
 
         self.termsScreen.pushButton.clicked.connect(self.termsBtnFcn)
-
+        
     def termsBtnFcn(self):
         print "Next Btn in Terms is Clicked"
         if self.termsScreen.checkBox.isChecked():
@@ -467,7 +473,7 @@ p, li { white-space: pre-wrap; }
         print totalC
         print totalD
         print totalE
-        totalB= self.maxQuestions - totalA-totalC-totalD-totalE
+        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE
                 
 
 

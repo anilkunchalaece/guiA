@@ -11,7 +11,7 @@ import shutil
 #Date : 30 Aug 2016 - Avoid the' \n\r' characters in received string
 #http://stackoverflow.com/questions/1185524/how-to-trim-whitespace-including-tabs
 class TestData(object):
-    def __init__(self,testId,valueId,userName,userPswd):
+    def __init__(self,testId,userName,userPswd):
         #f = open('anatomy_questions.csv','rt')
         #reader = csv.reader(f)
         #self.keys = [] This is useless List Not needed Anymore - 9th Sep 2016
@@ -27,11 +27,10 @@ class TestData(object):
         self.imgQueDict = {}
 
         _testId = testId
-        _valueId = valueId
         _userName = userName
         _userPswd = userPswd
                 
-        _mydata=[('ID',_testId),('two',_valueId),('UID',_userName),('UPSWD',_userPswd)]    #The first is the var name the second is the value
+        _mydata=[('ID',_testId),('UID',_userName),('UPSWD',_userPswd)]    #The first is the var name the second is the value
         _mydata=urllib.urlencode(_mydata)
         _path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
         _req=urllib2.Request(_path, _mydata)
@@ -62,8 +61,14 @@ Original Question
         getTestName = r"\<m>(.+?)\<\/m\>" # re pattern used for test name
         getTestTime = r"\<t>(.+?)\<\/t\>" # re pattern used for test time
 
-        self.testName = re.findall(getTestName,_page)[0]
-        self.testTime = re.findall(getTestTime,_page)[0]
+        try :
+
+            self.testName = re.findall(getTestName,_page)[0]
+            self.testTime = re.findall(getTestTime,_page)[0]
+
+        except:
+            self.testName = 'Got nothing From Web'
+            self.testTime = 1
 
         for queOpt in re.findall(getQue,_page.translate(None,'\n\r\t')):
             for opt in re.findall(cutQue,queOpt):
@@ -115,7 +120,7 @@ This is used for CSV Reader
 
 if __name__ == "__main__":
    
-    data = TestData(104,2,'anil',123)
+    data = TestData(104,'anil',123)
     print "no of Questions"
     print len(data.keyDict)
     #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
