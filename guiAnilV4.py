@@ -157,6 +157,7 @@ p, li { white-space: pre-wrap; }
             newLogic.retranslateUi(newLogic.questionIndex)
         else:
             print "Please accept Terms and Conditions"
+            self.termsScreen.termsLabel.setText('Please check the terms accepted checkbox')
         
     def addImagesForLegendBtns(self):
         ui.answerdBtn.setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
