@@ -21,6 +21,8 @@ from terms import Ui_Terms
 from PyQt4 import QtCore, QtGui
 import os  # to get the files path etc..
 import shutil # to remove temporary directory after exam ending
+import json #used for post request to send the Result Dict
+import urllib2, urllib
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -115,16 +117,16 @@ class guiLogic(Ui_prepare2Pg):
     def loginFcn(self):
         print "Login Btn is Clicked"
          
-        _userName = str(self.loginScreen.username_txt.text())
+        self.userName = str(self.loginScreen.username_txt.text())
         _userPswd = str(self.loginScreen.pass_txt.text())
-        _userTId = str(self.loginScreen.tid_txt.text())
+        self.userTId = str(self.loginScreen.tid_txt.text())
 
-        print _userName
+        print self.userName
         print _userPswd
-        print _userTId
+        print self.userTId
         
        
-        self.data = TestData(_userTId,_userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
+        self.data = TestData(self.userTId,self.userName,_userPswd) # Create a TestData Object which supply necessary Ingredients
         self.data.maxQuestions = len(self.data.queDict)
         if self.data.maxQuestions == 0:
             print "I got Zero Questions"
@@ -406,6 +408,17 @@ p, li { white-space: pre-wrap; }
         print 'Dict sent to Via Post Request is'       
         print _outputDict
         
+#sending the result via Post Request
+        _outputPost = json.dumps(_outputDict)
+        _postData = [('dict',_outputPost),('uName',self.userName),('tId',self.userTId)]
+        _postData = urllib.urlencode(_postData)
+        _req = urllib2.Request('http://www.newpythonscripts.16mb.com/new6.php',_postData)
+        _req.add_header("Content-type", "application/x-www-form-urlencoded")
+        _page=urllib2.urlopen(_req).read()
+
+        print 'result is'
+        print _page
+
         shutil.rmtree("temp") # delete the temporary directory
         self.closeExam()
 
