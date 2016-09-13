@@ -356,7 +356,7 @@ p, li { white-space: pre-wrap; }
     def moveToNextQuestion(self):
          #This function increment the questionIndex and Display the Question using Index
         self.questionIndex=newLogic.questionIndex+1
-        if self.questionIndex > self.maxQuestions :
+        if self.questionIndex > self.data.maxQuestions :
             self.questionIndex = 1
         self.statusDict[self.questionIndex] = 'd'
         self.retranslateUi(newLogic.questionIndex)
