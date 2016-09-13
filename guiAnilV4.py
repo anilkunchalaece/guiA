@@ -231,9 +231,17 @@ p, li { white-space: pre-wrap; }
     def updateLcd(self):
         ##http://stackoverflow.com/questions/775049/python-time-seconds-to-hms
         # this function increments the self.timerValue variable which is converted to hh:mm:ss 
-        m, s = divmod(self.timerValue, 60)
-        h, m = divmod(m, 60)
-        timeValue = str(h) + ':' + str(m)+':'+str(s)
+        _m, _s = divmod(self.timerValue, 60)
+        _h, _m = divmod(_m, 60)
+
+        if _m < 10:
+            _m = '0'+str(_m)
+        if _h < 10 :
+            _h = '0'+str(_h)
+        if _s < 10:
+            _s = '0'+str(_s)
+        
+        timeValue = str(_h) + ':' + str(_m)+':'+str(_s)
 
         ui.timeRemaining.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
