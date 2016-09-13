@@ -287,7 +287,7 @@ p, li { white-space: pre-wrap; }
             print "No Option selected"
             self.selectedOption = 'N'
         
-        self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
+        self.resultDict[str(self.questionIndex)] = self.selectedOption #Store the Result in Dict
 
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
@@ -313,7 +313,7 @@ p, li { white-space: pre-wrap; }
         ui.optDRadioButton.setChecked(False)
         ui.buttonGroup.setExclusive(True)
         #Update the resultDict
-        self.resultDict[self.questionIndex] = 'N'
+        self.resultDict[str(self.questionIndex)] = 'N'
 
         self.statusDict[self.questionIndex] = 'd' # Not Answered 
                   
@@ -342,7 +342,7 @@ p, li { white-space: pre-wrap; }
             print "No Option selected"
             self.selectedOption = 'N'
             
-        self.resultDict[self.questionIndex] = self.selectedOption #Store the Result in Dict
+        self.resultDict[str(self.questionIndex)] = self.selectedOption #Store the Result in Dict
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
             
@@ -371,19 +371,29 @@ p, li { white-space: pre-wrap; }
         print "Output Dict is "
         print self.resultDict #Result Dict used in Program
         _outputDict = {}
-        for key in self.resultDict :
+#To Indicate the unattempted and Unanswwered questions as Nothing selected I need to change the For loop below
+#i need to check for each key in key dict 
+
+        for key in self.data.keyDict :
             _uId = self.data.keyDict[str(key)]#get the Corresponding UId for qId
-            _opt = self.resultDict[key]
+
+            if key in self.resultDict :
+               
+                _opt = self.resultDict[key]#get the selected option
            
 
-            if _opt == 'A':
-                _outputDict[_uId] = self.data.optADict[str(key)]
-            elif _opt == 'B':
-                _outputDict[_uId] = self.data.optBDict[str(key)]
-            elif _opt == 'C':
-                _outputDict[_uId] = self.data.optCDict[str(key)]
-            elif _opt == 'D':
-                _outputDict[_uId] = self.data.optDDict[str(key)]
+                if _opt == 'A':
+                    _outputDict[_uId] = self.data.optADict[str(key)]
+                elif _opt == 'B':
+                    _outputDict[_uId] = self.data.optBDict[str(key)]
+                elif _opt == 'C':
+                    _outputDict[_uId] = self.data.optCDict[str(key)]
+                elif _opt == 'D':
+                    _outputDict[_uId] = self.data.optDDict[str(key)]
+                elif _opt == 'N':
+                    _outputDict[_uId] = 'Nothing Selected'
+            else :
+                _outputDict[_uId] = 'Nothing Selected'
             #print outputDict
         print 'Dict sent to Via Post Request is'       
         print _outputDict
