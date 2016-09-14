@@ -32,7 +32,8 @@ class TestData(object):
                 
         _mydata=[('ID',_testId),('UID',_userName),('UPSWD',_userPswd)]    #The first is the var name the second is the value
         _mydata=urllib.urlencode(_mydata)
-        _path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
+        _path = 'http://www.pythonlayout.16mb.com/test/data.php'
+        #_path='http://www.newpythonscripts.16mb.com/new5.php'    #the url you want to POST to
         _req=urllib2.Request(_path, _mydata)
         _req.add_header("Content-type", "application/x-www-form-urlencoded")
         _page=urllib2.urlopen(_req).read()
@@ -120,7 +121,7 @@ This is used for CSV Reader
 
 if __name__ == "__main__":
    
-    data = TestData(104,'anil',123)
+    data = TestData(105,'anil05','neeha@2036')
     print "no of Questions"
     print len(data.keyDict)
     #os.mkdir("temp")  # create a temp directory ref http://www.tutorialspoint.com/python/python_files_io.htm
