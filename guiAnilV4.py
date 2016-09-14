@@ -505,7 +505,8 @@ p, li { white-space: pre-wrap; }
             elif status == 'c':
                 totalC = totalC+1
             elif status == 'd':
-                totalD = totalD+1
+                pass
+                #totalD = totalD+1
             else:
                 totalE = totalE+1
 
@@ -514,7 +515,8 @@ p, li { white-space: pre-wrap; }
         print totalD
         print totalE
 
-        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE + 1
+        totalB= self.data.maxQuestions - totalA-totalC-totalE-1
+        totalD = self.data.maxQuestions - totalA
                 
 
 
