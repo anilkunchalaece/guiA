@@ -108,7 +108,8 @@ class guiLogic(Ui_prepare2Pg):
         #setup Login Screen
         self.setupLogin()
 
-       
+        self.statusDict[self.questionIndex] = 'd'
+
     def setupLogin(self):
 
         self.loginScreen.loginBtn.clicked.connect(self.loginFcn)
@@ -303,9 +304,11 @@ p, li { white-space: pre-wrap; }
         if self.selectedOption == 'N':
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/markredForReviewImg.png); }")
             self.statusDict[self.questionIndex] = 'e' #Marked for Review
+            print "set the status as marked for review"
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredAndMarkedForReviewImg.png); }")
             self.statusDict[self.questionIndex] = 'c' #answred and Marked for Review
+            print "set the status as Answered and Marked for Review"
             
         self.moveToNextQuestion()
 
@@ -326,7 +329,8 @@ p, li { white-space: pre-wrap; }
         #Update the resultDict
         self.resultDict[str(self.questionIndex)] = 'N'
 
-        self.statusDict[self.questionIndex] = 'd' # Not Answered 
+        self.statusDict[self.questionIndex] = 'd' # Not Answered
+        print "set the status as notAnswered"
                   
 
         
@@ -336,6 +340,10 @@ p, li { white-space: pre-wrap; }
         # then Change the color of the Respective Button is Scroll btn usinf Qindex 
         
         print "Save and Next Function is Selected Btn Pressed"
+#        if self.questionIndex == self.data.maxQuestions-1:
+#            print "Last Question"
+#            ui.saveAndNextBtn.setEnabled(False)
+            
 
         if ui.optARadioButton.isChecked():
             print "Option A is Selected"
@@ -358,18 +366,30 @@ p, li { white-space: pre-wrap; }
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
             
             self.statusDict[self.questionIndex] = 'd'#unanswered
+            print "Set the status as unanswered"
         else :
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/answeredBtnImg.png); }")
-            self.statusDict[self.questionIndex] = 'a'
-            
+            self.statusDict[self.questionIndex] = 'a' #answered
+            print "set the status as answered"
+
+
         self.moveToNextQuestion()
 
     def moveToNextQuestion(self):
          #This function increment the questionIndex and Display the Question using Index
-        self.questionIndex=newLogic.questionIndex+1
+        self.questionIndex=self.questionIndex+1
         if self.questionIndex > self.data.maxQuestions :
             self.questionIndex = 1
-        self.statusDict[self.questionIndex] = 'd'
+
+        _status =  self.statusDict.get(self.questionIndex,False)
+        if _status == False:
+            self.statusDict[self.questionIndex] = 'd' #if status dict is empty then put the not answered value to it
+            print self.statusDict
+            print self.questionIndex
+            print _status
+            print "status dict is empty"
+            print "set the status as unanswered"
+
         self.retranslateUi(newLogic.questionIndex)
         self.showPreviosOption(self.questionIndex)
 
@@ -494,7 +514,7 @@ p, li { white-space: pre-wrap; }
 
         totalA = 0
         totalC = 0
-        totalD = 1
+        totalD = 0
         totalE = 0
         #totalB = 1
 
@@ -505,8 +525,7 @@ p, li { white-space: pre-wrap; }
             elif status == 'c':
                 totalC = totalC+1
             elif status == 'd':
-                pass
-                #totalD = totalD+1
+                totalD = totalD+1
             else:
                 totalE = totalE+1
 
@@ -515,8 +534,8 @@ p, li { white-space: pre-wrap; }
         print totalD
         print totalE
 
-        totalB= self.data.maxQuestions - totalA-totalC-totalE-1
-        totalD = self.data.maxQuestions - totalA
+        totalB= self.data.maxQuestions - totalA-totalC-totalE-totalD
+        #totalD = self.data.maxQuestions - totalA
                 
 
 
