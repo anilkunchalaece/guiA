@@ -216,7 +216,8 @@ p, li { white-space: pre-wrap; }
 
     def showPreviosOption(self,QIndex):
         #TO Highlight the user Selected Option If user Comes back - Check Issue : https://github.com/anilkunchalaece/pyQtGuiImproved/issues/1
-        checked = self.resultDict.get(QIndex,False)
+        checked = self.resultDict.get(str(QIndex),False)
+        print "show Previous Option"
         if checked:
             print checked
             if checked == 'A':
@@ -227,7 +228,7 @@ p, li { white-space: pre-wrap; }
                 ui.optCRadioButton.setChecked(True)
             elif checked == 'D':
                 ui.optDRadioButton.setChecked(True)
-                
+            print "Show Previous Option"
                 
 
     def updateLcd(self):
@@ -432,7 +433,7 @@ p, li { white-space: pre-wrap; }
         x = str(newLogic.data.queDict[str(QIndex)])
         y = str(QIndex)
         
-        checked = self.resultDict.get(QIndex,False)
+        checked = self.resultDict.get(str(QIndex),False)
         if checked == False:
             self.btn[str(self.questionIndex)].setStyleSheet("QPushButton{ background-image: url(btnImages/unansweredImg.png); }")
 
@@ -513,7 +514,7 @@ p, li { white-space: pre-wrap; }
         print totalD
         print totalE
 
-        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE
+        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE + 1
                 
 
 
