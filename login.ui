@@ -110,22 +110,6 @@ background-color: rgb(85, 170, 255);</string>
      <string>TEST ID :</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="tid_txt">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>150</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Password</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="invalidLogin">
     <property name="enabled">
      <bool>false</bool>
@@ -149,6 +133,19 @@ background-color: rgb(85, 170, 255);</string>
      <cursorShape>ArrowCursor</cursorShape>
     </property>
     <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="tid_txt">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>150</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="inputMask">
      <string/>
     </property>
    </widget>

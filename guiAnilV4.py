@@ -484,11 +484,18 @@ p, li { white-space: pre-wrap; }
         ui.optDRadioButton.setChecked(False)
         ui.buttonGroup.setExclusive(True)
 
+                
+        # answered = 'a' 
+        # notVisited = 'b'
+        # answeredAndMarkedForReview= 'c'
+        # notAnsweredBtn = 'd'
+        # markedForReview = 'e'
+
         totalA = 0
         totalC = 0
         totalD = 1
         totalE = 0
-        totalB = 1
+        #totalB = 1
 
         for k in self.statusDict:
             status = self.statusDict[k]
@@ -505,7 +512,8 @@ p, li { white-space: pre-wrap; }
         print totalC
         print totalD
         print totalE
-        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE
+
+        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE+1
                 
 
 
