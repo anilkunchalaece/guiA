@@ -513,7 +513,7 @@ p, li { white-space: pre-wrap; }
         print totalD
         print totalE
 
-        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE+1
+        totalB= self.data.maxQuestions - totalA-totalC-totalD-totalE
                 
 
 
