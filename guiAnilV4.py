@@ -149,7 +149,7 @@ class guiLogic(Ui_prepare2Pg):
             #we are Getting the time as Str in Minutes. So Convert it into seconds and make type Int
             self.timerValue = int(self.data.testTime)*60
 
-            MainWindow.show() # Open the MainWindow
+            MainWindow.showFullScreen() # Open the MainWindow
             self.startTimer() # Start the timer Only After showing MainWindow
 
             ui.examTitle.setHtml('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
